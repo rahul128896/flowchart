@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowCharter - Offline Flowchart Maker</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="description" content="Create, edit and save flowcharts offline with this browser-based tool">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <h1>FlowCharter</h1>
+            </div>
+            <div class="toolbar">
+                <div class="file-operations">
+                    <button id="newBtn" class="btn" title="New Flowchart">New</button>
+                    <button id="saveBtn" class="btn" title="Save Flowchart">Save</button>
+                    <button id="loadBtn" class="btn" title="Load Flowchart">Load</button>
+                    <button id="exportBtn" class="btn" title="Export as PNG">Export</button>
+                </div>
+                <div class="view-controls">
+                    <button id="zoomInBtn" class="btn icon-btn" title="Zoom In">+</button>
+                    <button id="zoomOutBtn" class="btn icon-btn" title="Zoom Out">-</button>
+                    <button id="resetViewBtn" class="btn" title="Reset View">Reset View</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="node-palette">
+                    <h3>Nodes</h3>
+                    <div class="node-item" draggable="true" data-node-type="start">
+                        <div class="node-preview start-node"></div>
+                        <span>Start</span>
+                    </div>
+                    <div class="node-item" draggable="true" data-node-type="process">
+                        <div class="node-preview process-node"></div>
+                        <span>Process</span>
+                    </div>
+                    <div class="node-item" draggable="true" data-node-type="decision">
+                        <div class="node-preview decision-node"></div>
+                        <span>Decision</span>
+                    </div>
+                    <div class="node-item" draggable="true" data-node-type="input">
+                        <div class="node-preview input-node"></div>
+                        <span>Input/Output</span>
+                    </div>
+                    <div class="node-item" draggable="true" data-node-type="end">
+                        <div class="node-preview end-node"></div>
+                        <span>End</span>
+                    </div>
+                </div>
+                
+                <div class="tools">
+                    <h3>Tools</h3>
+                    <button id="connectBtn" class="btn tool-btn" title="Connect Nodes">Connect</button>
+                    <button id="selectBtn" class="btn tool-btn active" title="Select">Select</button>
+                    <button id="deleteBtn" class="btn tool-btn" title="Delete">Delete</button>
+                </div>
+
+                <div class="properties-panel" id="propertiesPanel">
+                    <h3>Properties</h3>
+                    <div id="nodeProperties" class="hidden">
+                        <div class="form-group">
+                            <label for="nodeText">Text:</label>
+                            <input type="text" id="nodeText" class="form-control">
+                        </div>
+                    </div>
+                    <div id="edgeProperties" class="hidden">
+                        <div class="form-group">
+                            <label for="edgeText">Label:</label>
+                            <input type="text" id="edgeText" class="form-control">
+                        </div>
+                    </div>
+                    <p id="noSelection" class="muted-text">No element selected</p>
+                </div>
+            </aside>
+
+            <div class="canvas-container">
+                <div id="validationMessages" class="validation-messages"></div>
+                <canvas id="flowchartCanvas"></canvas>
+            </div>
+        </div>
+
+        <div id="saveModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Save Flowchart</h2>
+                <div class="form-group">
+                    <label for="flowchartName">Flowchart Name:</label>
+                    <input type="text" id="flowchartName" class="form-control">
+                </div>
+                <button id="confirmSaveBtn" class="btn primary-btn">Save</button>
+            </div>
+        </div>
+
+        <div id="loadModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Load Flowchart</h2>
+                <div id="savedFlowcharts" class="saved-flowcharts">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/nodeTypes.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
